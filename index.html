@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sans Tabou</title>
+    <meta name="description" content="The home page includes spaces so that people could add their questions">
+    <meta name="author" content="Quelitho Gabriel">
+    <link rel="stylesheet" href="styles/stb.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("bPhJlc4PNhP86cMKa");
+        })();
+        
+        function sendEmail() {
+            var templateParams = {
+                name: document.getElementById('name').value,
+                message: document.getElementById('message').value
+            };
+        
+            emailjs.send("service_931n5yq", "template_e2zgyje", templateParams)
+                .then(function(response) {
+                    alert("Your message has been sent successfully.");
+                }, function(error) {
+                    alert("Error: Unable to send the message.");
+                });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>LE COUPLE SANS TABOU</h1>
+    </header>
+    <main>
+        <div class="full-width-image">
+            <img src="images/stb.jpg" alt="Home Image">
+            <h1>Bienvenue sur le site Sans Tabou</h1>
+        </div>
+    </main>
+    <fieldset>
+        <legend>Envoyez Vos Questions</legend>
+        <form id="contactForm">
+            <label for="name">Nom:</label>
+            <input type="text" id="name" name="name" required><br><br>
+        
+            <label for="message">Quéstions:</label>
+            <textarea id="message" name="message" required></textarea><br><br>
+        
+            <button type="button" onclick="sendEmail()">Envoyer</button>
+        </form> 
+    </fieldset>
+</body>
+</html>
